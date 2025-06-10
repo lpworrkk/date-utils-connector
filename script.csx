@@ -63,7 +63,7 @@ public class Script : ScriptBase
 
         JObject output = new JObject
         {
-            ["islastday"] = isLastDay,
+            ["isTodayLastDayOfMonth"] = isLastDay,
         };
 
         response = new HttpResponseMessage(HttpStatusCode.OK);
