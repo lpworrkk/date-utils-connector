@@ -1,0 +1,66 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Date Utils",
+    "description": "",
+    "version": "1.0"
+  },
+  "host": "api.contoso.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/": {},
+    "/isLastDateOfMonth" : {
+        "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "inputDate": {
+                  "type": "string",
+                  "description": "inputDate"
+                },
+                "islastday": {
+                  "type": "boolean",
+                  "description": "islastday"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Check date parameter",
+        "description": "Check date parameter is last day of the month",
+        "operationId": "isLastDateOfMonth",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Date": {
+                  "type": "string",
+                  "description": "Date",
+                  "format" : "date"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {},
+  "security": [],
+  "tags": []
+}
