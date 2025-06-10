@@ -8,8 +8,13 @@ public class Script : ScriptBase
     {
         if (this.Context.OperationId == "isLastDateOfMonth")
         {
-	        return await this.isDateLastDayOfTheMonth().ConfigureAwait(false);
-	    }
+	    return await this.isDateLastDayOfTheMonth().ConfigureAwait(false);
+	}
+
+        if (this.Context.OperationId == "isTodayLastDateOfMonth")
+        {
+	    return await this.isTodayLastDateOfMonth().ConfigureAwait(false);
+	}
 
         // Handle an invalid operation ID
         HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -17,20 +22,16 @@ public class Script : ScriptBase
         return response;
     }
 
-private async Task<HttpResponseMessage> isDateLastDayOfTheMonth()
+    private async Task<HttpResponseMessage> isDateLastDayOfTheMonth()
     {
         HttpResponseMessage response;
 
-        // We assume the body of the incoming request looks like this:
-        // {
-        //   "Email": "<email>"
-        // }
         var contentAsString = await this.Context.Request.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         // Parse as JSON object
         var contentAsJson = JObject.Parse(contentAsString);
 
-        // Get the value of phoneNumber
+        // Get the value of Date (parameter passed)
         var dateIn = (string)contentAsJson["Date"];
         var isLastDay = false;
 
@@ -43,6 +44,25 @@ private async Task<HttpResponseMessage> isDateLastDayOfTheMonth()
         JObject output = new JObject
         {
             ["inputDate"] = dateIn,
+            ["islastday"] = isLastDay,
+        };
+
+        response = new HttpResponseMessage(HttpStatusCode.OK);
+        response.Content = CreateJsonContent(output.ToString());
+        return response;
+    }
+
+    private async Task<HttpResponseMessage> isTodayLastDateOfMonth()
+    {
+        HttpResponseMessage response;
+
+        var isLastDay = false;
+	if ( (DateTime.Now.AddDays(1)).Day==1 ) {
+            isLastDay = true;
+	}
+
+        JObject output = new JObject
+        {
             ["islastday"] = isLastDay,
         };
 
