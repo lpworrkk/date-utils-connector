@@ -75,23 +75,7 @@
         "summary": "Today's Date is last day of month",
         "description": "Check today's date parameter is last day of the month",
         "operationId": "isTodayLastDateOfMonth",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": false,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Date": {
-                  "type": "string",
-                  "description": "Date",
-                  "format" : "date"
-                }
-              }
-            }
-          }
-        ]
+        "parameters": []
       }
     }
   },
