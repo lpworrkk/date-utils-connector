@@ -12,18 +12,18 @@ There are two ways to install the connector:
 
 ## Manual Installation
 
-1. Download [script.csx](https://raw.githubusercontent.com/hobbyman/regex-assistant-custom-connector/main/script.csx) (click on **... > Download** in the top right-hand corner).
+1. Download [script.csx](https://raw.githubusercontent.com/lpworrkk/date-utils-connector/refs/heads/main/script.csx) (click on **... > Download** in the top right-hand corner).
 2. Sign in to [https://make.powerapps.com](https://make.powerapps.com).
 3. Select target environment.
 4. Select **Custom connectors** in the left navigation.
 5. Select **+ New customer connector > Import an OpenAPI from URL**.
-   * Enter **CSV Magic** as Connector name.
+   * Enter **Date Utils** as Connector name.
    * Copy and paste this URL: `https://raw.githubusercontent.com/hobbyman/regex-assistant-custom-connector/main/RegEx-Assistant.swagger.json`
 6. Select **Import** then select **Continue**.
 7. Select **Code** in the navigation dropdown.
 8. Flip the switch to **Code Enabled**.
 9. Select **Upload** and upload **script.csx** saved earlier.
-10. Select **CsvToJson** in the list of operations.
+10. Select **DateUtils** in the list of operations.
 11. Select **Create connector**.
 
 <!--
@@ -53,33 +53,21 @@ What do you need?
 
 
 ## Methods
-* <mark>checkEmail</mark>
-* <mark>formatPhoneNumber</mark>
+* <mark>isLastDateOfMonth</mark>
 
 
-### checkEmail Parameters
-* Email - string - what it says
+
+### isLastDateOfMonth Parameters
+* Date - string - date you want to check
 
 #### checkEmail output
 The output will be JSON formatted in the following way:
 ```json
 {
-  "inputEmail" : "<your-input-email>",
-  "valid"      : <boolean>
+  "islastday"      : <boolean>
 }
 ```
 
-### formatPhoneNumber Parameters
-* Phone Number - string - what it says
-
-#### formatPhoneNumber output
-The output will be JSON formatted in the following way:
-```json
-{
-  "originalPhoneNumber"  : "<your-input-phone-number>",
-  "formattedPhoneNumber" : "<formatted-phone-number>"
-}
-```
 
 ## URLs used for my discovery and testing
 - **YouTube Video that started this** - https://www.youtube.com/watch?v=9sVl16bwx6w
