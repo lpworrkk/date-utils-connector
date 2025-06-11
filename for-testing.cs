@@ -1,5 +1,6 @@
 //-- tested at: https://dotnetfiddle.net/
 using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -19,6 +20,14 @@ class Program
 		
 		Console.WriteLine("Is today the last day of the month: " + isLastDayOfTheMonth(DateTime.Now));
 		
+		//-- test getting last 7 days
+		// Get the start and end date range of last 7 days.
+        var resultLast7DaysRange = GetLast7DaysDateRange(DateTime.Today);
+        foreach (DateTime date in resultLast7DaysRange)
+        {
+            Console.WriteLine(date);
+        }		
+		
 		//-- the following is for fake testing of the isLastDayOfTheMonth();
 		DateTime firstDayOfNextMonth = new DateTime( DateTime.Now.Year, DateTime.Now.AddMonths(1).Month, 1 );
 		Console.WriteLine("firstDayOfNextMonth.AddSeconds(-1): " + firstDayOfNextMonth.AddSeconds(-1));
@@ -29,7 +38,7 @@ class Program
 		var parsedDate = DateTime.Parse(dateTest);
 		Console.WriteLine("parsedDate: " + parsedDate);
 
-        Console.ReadLine(); // Keep the console window open
+		Console.WriteLine("Testing: " + (DateTime.Now.AddDays(1)).Day);
     }
 
     static void GetMonthBoundaries(int month, int year, out DateTime firstDayOfMonth, out DateTime lastDayOfMonth)
@@ -53,4 +62,15 @@ class Program
 		}
 		return false;
 	}
+	
+	// Returns a list with two dates: 7 days ago and today
+    public static List<DateTime> GetLast7DaysDateRange(DateTime today)
+    {
+        List<DateTime> result = new List<DateTime> {
+            today.AddDays(-7), // 7 days ago from today
+            today              // today
+        };
+        
+        return result;
+    }
 }
